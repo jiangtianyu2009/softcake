@@ -4,10 +4,10 @@ import os
 import shutil
 import re
 
-base_url = 'http://www.javli6.com/cn/vl_searchbyid.php?keyword='
-srcDir = 'C:\\Users\\JIANG\\Downloads\\FileNameData'
-distDir = 'C:\\Users\\JIANG\\Downloads\\OutputData'
-favstarsFile = 'C:\\Users\\JIANG\\Downloads\\favstars-mjyang-1461674723.html'
+base_url = 'http://www.jav11b.com/cn/vl_searchbyid.php?keyword='
+srcDir = 'H:\\TCtemp'
+distDir = 'H:\\TCtemp2'
+favstarsFile = 'F:\\utorrent\\hg\\favstars-mjyang-1480093224.html'
 favstarsList = []
 filterWord = "演员:"
 

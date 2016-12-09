@@ -7,3 +7,5 @@ install:
 # command to run tests
 script:
   - python YouKnowShit/CheckFile.py
+notifications:
+  slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv

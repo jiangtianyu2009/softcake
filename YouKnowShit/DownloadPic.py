@@ -6,7 +6,7 @@ import shutil
 import re
 
 base_url = 'http://www.jav11b.com/cn/vl_searchbyid.php?keyword='
-srcDir = 'H:\\temp'
+srcDir = r'E:\download\TC'
 filterWord = "video_jacket_img"
 
 filenames = os.listdir(srcDir)

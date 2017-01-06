@@ -2,7 +2,7 @@ import os
 import re
 
 
-distDir = 'H:\\temp'
+distDir = r'E:\download\TC'
 p = re.compile(r'(\D+\d+)\w*(.\w+)')
 
 

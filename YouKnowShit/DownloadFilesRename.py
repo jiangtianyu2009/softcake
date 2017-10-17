@@ -2,8 +2,8 @@ import os
 import re
 
 
-distDir = 'H:\\temp'
-p = re.compile(r'(\D+\d+)\w*(.\w+)')
+distDir = r'H:\Temp\TC'
+p = re.compile(r'(\D+\d+)(\w*)(.\w+)')
 
 
 filenames = os.listdir(distDir)
@@ -16,7 +16,13 @@ for filenamepref in filenames:
         filenameprefit = filenamepref
     filenamepost = filenameprefit.replace('-', '').replace('_', '')\
         .replace(' ', '').replace('.1080p', '').replace('.720p', '')\
-        .replace('[thz.la]', '').replace('[Thz.la]', '')
-    distname = p.search(filenamepost).group(1).upper() + p.search(filenamepost).group(2).lower()
+        .replace('[thz.la]', '').replace('[Thz.la]', '').replace('[HD]', '')
+    fhalf = p.search(filenamepost).group(1).upper()
+    mhalf = p.search(filenamepost).group(2).upper()
+    lhalf = p.search(filenamepost).group(3).lower()
+    if mhalf == "A" or mhalf == "B" or mhalf == "C":
+        distname = fhalf + mhalf + lhalf
+    else:
+        distname = fhalf + lhalf
     print(distname)
     os.rename(distDir + os.sep + filenamepref, distDir + os.sep + distname)

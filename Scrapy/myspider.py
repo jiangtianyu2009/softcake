@@ -1,13 +1,19 @@
 import scrapy
 
-class BlogSpider(scrapy.Spider):
-    name = 'blogspider'
-    start_urls = ['https://blog.scrapinghub.com']
+
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+    start_urls = [
+        'http://thibt.com/forum-220-1.html',
+    ]
 
     def parse(self, response):
-        for title in response.css('h2.entry-title'):
-            yield {'title': title.css('a ::text').extract_first()}
+        for quote in response.css('th.new'):
+            yield {
+                'text': quote.css('a.xst::text').extract_first(),
+                'href': quote.css('a.xst::attr("href")').extract_first(),
+            }
 
-        for next_page in response.css('div.prev-post > a'):
+        next_page = response.css('a.nxt::attr("href")').extract_first()
+        if next_page is not None:
             yield response.follow(next_page, self.parse)
-            

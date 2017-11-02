@@ -8,7 +8,7 @@ class QuotesSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-        for quote in response.css('th.new'):
+        for quote in response.css('th.common'):
             yield {
                 'text': quote.css('a.xst::text').extract_first(),
                 'href': quote.css('a.xst::attr("href")').extract_first(),

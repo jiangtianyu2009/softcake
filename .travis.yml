@@ -7,6 +7,6 @@ install:
 # command to run tests
 script:
   - python YouKnowShit/CheckFile.py
-  - scrapy runspider Scrapy/myspider.py
+#  - scrapy runspider Scrapy/myspider.py
 notifications:
   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv

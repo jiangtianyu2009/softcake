@@ -1,10 +1,10 @@
 import scrapy
 
-
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
     start_urls = [
         'http://thibt.com/forum-220-1.html',
+        'http://thibt.com/forum-181-1.html'
     ]
 
     def parse(self, response):

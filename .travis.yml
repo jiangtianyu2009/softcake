@@ -8,5 +8,6 @@ install:
 script:
   - python YouKnowShit/CheckFile.py
   - scrapy runspider thzspider/spiders/myspider.py
+  - curl -u 11befd9da9304fecb83dfa114d1926e9: https://app.scrapinghub.com/api/run.json -d project=Thz -d spider=thz
 notifications:
   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv

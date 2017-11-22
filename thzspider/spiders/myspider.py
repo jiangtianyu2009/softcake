@@ -4,7 +4,7 @@ import scrapy
 class ThzSpider(scrapy.Spider):
     name = "thz"
     start_urls = [
-        'http://thibt.com/forum-220-1.html',
+        'http://thzab.com/forum-220-1.html',
     ]
 
     def parse(self, response):

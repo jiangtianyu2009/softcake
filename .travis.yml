@@ -7,13 +7,15 @@ install:
 # command to run tests
 jobs:
   include:
-    - stage: run spider on travis-ci
-      script: 
-      - python YouKnowShit/CheckFile.py
-      - scrapy runspider thzspider/spiders/myspider.py
     - stage: run spider on scrapinghub
       script: 
       - python thzspider/runonscrapinghub.py
+    - stage: run ride spider on travis-ci
+      script: 
+      - scrapy runspider thzspider/spiders/myspider.py
+    - stage: run walk spider on travis-ci
+      script: 
+      - scrapy runspider thzspider/spiders/walkspider.py
 # slack
 notifications:
   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv

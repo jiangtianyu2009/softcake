@@ -2,9 +2,9 @@ import scrapy
 
 
 class ThzSpider(scrapy.Spider):
-    name = "thzride"
+    name = "thzwalk"
     start_urls = [
-        'http://thz.la/forum-220-1.html',
+        'http://thz.la/forum-181-1.html',
     ]
 
     def parse(self, response):

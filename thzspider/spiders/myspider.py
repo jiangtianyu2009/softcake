@@ -12,13 +12,13 @@ class ThzSpider(scrapy.Spider):
         for new in response.css('th.new'):
             yield {
                 'text': new.css('a.xst::text').extract_first(),
-                'href': new.css('a.xst::attr("href")').extract_first(),
+                'href': 'http://thz.la/' + new.css('a.xst::attr("href")').extract_first(),
             }
 
         for common in response.css('th.common'):
             yield {
                 'text': common.css('a.xst::text').extract_first(),
-                'href': common.css('a.xst::attr("href")').extract_first(),
+                'href': 'http://thz.la/' + common.css('a.xst::attr("href")').extract_first(),
             }
 
         next_page = response.css('a.nxt::attr("href")').extract_first()

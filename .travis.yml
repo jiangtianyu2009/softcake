@@ -9,7 +9,7 @@ jobs:
   include:
     - stage: run ride spider on travis-ci
       script: 
-      - scrapy runspider thzspider/spiders/myspider.py
+      - scrapy runspider thzspider/spiders/ridespider.py
     - stage: run walk spider on travis-ci
       script: 
       - scrapy runspider thzspider/spiders/walkspider.py

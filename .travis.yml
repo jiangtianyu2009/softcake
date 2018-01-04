@@ -7,6 +7,9 @@ install:
 # command to run tests
 jobs:
   include:
+    - stage: run javlib name spider on travis-ci
+      script: 
+      - scrapy runspider thzspider/spiders/namespider.py
     - stage: run ride spider on travis-ci
       script: 
       - scrapy runspider thzspider/spiders/ridespider.py

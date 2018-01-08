@@ -14,7 +14,7 @@ class CodeSpider(scrapy.Spider):
     for job in list(project.jobs.iter_last(spider='javname', state='finished')):
         javjob = job
 
-    #print(javjob['key'])
+    print(javjob['key'])
     job = project.jobs.get(javjob['key'])
 
     namelist = []
@@ -170,9 +170,9 @@ class CodeSpider(scrapy.Spider):
 
     for actorname in namelist:
         filters = [("name", "=", [actorname])]
-        #print(job.items.list(count=1, filter=filters))
+        print(job.items.list(count=1, filter=filters))
         for item in job.items.iter(count=1, filter=filters):
-            #print(baseurl + item['href'])
+            print(baseurl + item['href'])
             start_urls.append(baseurl + item['href'])
 
     def parse(self, response):

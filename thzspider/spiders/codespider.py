@@ -2,7 +2,7 @@ import scrapy
 from scrapinghub import ScrapinghubClient
 
 
-class ThzSpider(scrapy.Spider):
+class CodeSpider(scrapy.Spider):
     name = "javcode"
     baseurl = 'http://www.j17v.com/cn/'
     start_urls = []

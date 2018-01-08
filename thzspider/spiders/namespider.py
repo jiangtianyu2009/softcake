@@ -2,7 +2,7 @@ import scrapy
 import string
 
 
-class ThzSpider(scrapy.Spider):
+class NameSpider(scrapy.Spider):
     name = "javname"
     baseurl = 'http://www.j17v.com/cn/star_list.php?prefix='
     start_urls = []

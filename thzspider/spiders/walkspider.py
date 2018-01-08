@@ -1,7 +1,7 @@
 import scrapy
 
 
-class ThzSpider(scrapy.Spider):
+class WalkSpider(scrapy.Spider):
     name = "thzwalk"
     start_urls = [
         'http://thz.la/forum-181-1.html',

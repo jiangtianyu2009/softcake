@@ -161,8 +161,8 @@ namelist.append('藤波さとり')
 namelist.append('小鳥遊みやび')
 namelist.append('宝生リリー')
 
-for name in namelist:
-    filters = [("name", "=", [name])]
-    #print(job.items.list(count=1, filter=filters))
+for actorname in namelist:
+    filters = [("name", "=", [actorname])]
+    print(job.items.list(count=1, filter=filters))
     for item in job.items.iter(count=1, filter=filters):
         print(item['href'])

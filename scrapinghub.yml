@@ -1,0 +1,5 @@
+projects:
+  default: thzspider
+
+requirements:
+  file: requirements.txt

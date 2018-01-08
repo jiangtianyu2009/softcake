@@ -10,6 +10,9 @@ jobs:
     - stage: run javlib name spider on travis-ci
       script: 
       - scrapy runspider thzspider/spiders/namespider.py
+    - stage: run javlib code spider on travis-ci
+      script: 
+      - scrapy runspider thzspider/spiders/codespider.py
     - stage: run ride spider on travis-ci
       script: 
       - scrapy runspider thzspider/spiders/ridespider.py

@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.6"
+  - "3.6.4"
 # command to install dependencies
 install:
   - pip install -r requirements.txt
@@ -21,7 +21,7 @@ jobs:
       - scrapy runspider thzspider/spiders/walkspider.py
     - stage: run spider on scrapinghub
       script: 
-      - python thzspider/runonscrapinghub.py
+      - python thzspider/scripts/runonscrapinghub.py
 # slack
 notifications:
   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv

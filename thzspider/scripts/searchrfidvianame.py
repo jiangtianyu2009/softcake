@@ -4,11 +4,10 @@ apikey = '11befd9da9304fecb83dfa114d1926e9'
 client = ScrapinghubClient(apikey)
 project = client.get_project(252342)
 
-for job in list(project.jobs.iter_last(spider='javname', state='finished')):
-    javjob = job
 
+javjob = project.jobs.list(spider='javname', state='finished')[0]
 print(javjob['key'])
-job = project.jobs.get(javjob['key'])
+lastjob = project.jobs.get(javjob['key'])
 
 namelist = []
 namelist.append('秋山祥子')
@@ -163,6 +162,6 @@ namelist.append('宝生リリー')
 
 for actorname in namelist:
     filters = [("name", "=", [actorname])]
-    print(job.items.list(count=1, filter=filters))
-    for item in job.items.iter(count=1, filter=filters):
+    print(lastjob.items.list(count=1, filter=filters))
+    for item in lastjob.items.iter(count=1, filter=filters):
         print(item['href'])

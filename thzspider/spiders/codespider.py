@@ -170,9 +170,7 @@ class CodeSpider(scrapy.Spider):
 
     for actorname in namelist:
         filters = [("name", "=", [actorname])]
-        print(job.items.list(count=1, filter=filters))
         for item in job.items.iter(count=1, filter=filters):
-            print(baseurl + item['href'])
             start_urls.append(baseurl + item['href'])
 
     def parse(self, response):

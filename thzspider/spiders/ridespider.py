@@ -13,14 +13,12 @@ class RideSpider(scrapy.Spider):
         for new in response.css('th.new'):
             yield {
                 'text': new.css('a.xst::text').extract_first(),
-                'code': re.split('[\[\]]', new.css('a.xst::text').extract_first())[1].upper(),
                 'href': new.css('a.xst::attr("href")').extract_first(),
             }
 
         for common in response.css('th.common'):
             yield {
                 'text': common.css('a.xst::text').extract_first(),
-                'code': re.split('[\[\]]', common.css('a.xst::text').extract_first())[1].upper(),
                 'href': common.css('a.xst::attr("href")').extract_first(),
             }
 

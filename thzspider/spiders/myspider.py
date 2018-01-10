@@ -26,18 +26,24 @@ class MySpider(scrapy.Spider):
     def parse(self, response):
 
         for new in response.css('th.new'):
-            code_new = re.split('[\[\]]', new.css(
-                'a.xst::text').extract_first())[1].upper()
-            href_new = new.css('a.xst::attr("href")').extract_first()
-            if (code_new in MySpider.codelist):
-                yield response.follow(href_new, self.getdetail)
+            try:
+                code_new = re.split('[\[\]]', new.css(
+                    'a.xst::text').extract_first())[1].upper()
+                href_new = new.css('a.xst::attr("href")').extract_first()
+                if (code_new in MySpider.codelist):
+                    yield response.follow(href_new, self.getdetail)
+            except Exception:
+                pass
 
         for common in response.css('th.common'):
-            code_common = re.split('[\[\]]', common.css(
-                'a.xst::text').extract_first())[1].upper()
-            href_common = common.css('a.xst::attr("href")').extract_first()
-            if (code_common in MySpider.codelist):
-                yield response.follow(href_common, self.getdetail)
+            try:
+                code_common = re.split('[\[\]]', common.css(
+                    'a.xst::text').extract_first())[1].upper()
+                href_common = common.css('a.xst::attr("href")').extract_first()
+                if (code_common in MySpider.codelist):
+                    yield response.follow(href_common, self.getdetail)
+            except Exception:
+                pass
 
         next_page = response.css('a.nxt::attr("href")').extract_first()
         if next_page is not None:

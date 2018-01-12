@@ -179,3 +179,7 @@ class CodeSpider(scrapy.Spider):
             yield {
                 'code': codeitem.css('::text').extract_first(),
             }
+
+        next_page = response.css('a.next::attr("href")').extract_first()
+        if next_page is not None:
+            yield response.follow(next_page, self.parse)

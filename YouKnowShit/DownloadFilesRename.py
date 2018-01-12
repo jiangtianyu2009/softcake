@@ -2,7 +2,7 @@ import os
 import re
 
 
-distDir = r'H:\Temp\TC'
+distDir = r'F:\tempf\TC'
 p = re.compile(r'(\D+\d+)(\w*)(.\w+)')
 
 

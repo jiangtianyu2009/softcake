@@ -167,6 +167,7 @@ class CodeSpider(scrapy.Spider):
     namelist.append('藤波さとり')
     namelist.append('小鳥遊みやび')
     namelist.append('宝生リリー')
+    namelist.append('菊川みつ葉')
 
     for actorname in namelist:
         filters = [("name", "=", [actorname])]

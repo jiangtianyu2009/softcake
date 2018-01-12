@@ -5,8 +5,8 @@ import urllib.request
 import shutil
 import re
 
-base_url = 'http://www.ja14b.com/cn/vl_searchbyid.php?keyword='
-srcDir = r'H:\Temp\TC'
+base_url = 'http://www.j17v.com/cn/vl_searchbyid.php?keyword='
+srcDir = r'F:\tempf\TC'
 filterWord = "video_jacket_img"
 
 filenames = os.listdir(srcDir)

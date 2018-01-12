@@ -1,6 +1,8 @@
 # This is an implicit value, here for clarity
 --index https://pypi.python.org/simple/
 
-requests==2.9.1
-beautifulsoup4==4.4.1
-scrapy==1.4.0
+requests==2.18.4
+beautifulsoup4==4.6.0
+scrapy==1.5.0
+scrapinghub==2.0.3
+msgpack-python==0.5.0

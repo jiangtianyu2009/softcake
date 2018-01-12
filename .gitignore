@@ -89,3 +89,5 @@ ENV/
 .ropeproject
 
 Scrapy/res\.json
+
+thzspider/spiders/res\.json

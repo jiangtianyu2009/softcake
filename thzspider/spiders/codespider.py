@@ -5,7 +5,7 @@ from scrapinghub import ScrapinghubClient
 
 class CodeSpider(scrapy.Spider):
     name = "javcode"
-    baseurl = 'http://www.j17v.com/cn/'
+    baseurl = 'http://www.javlibrary.com/tw/'
     start_urls = []
 
     apikey = '11befd9da9304fecb83dfa114d1926e9'

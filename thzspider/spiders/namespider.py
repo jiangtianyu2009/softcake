@@ -4,7 +4,7 @@ import string
 
 class NameSpider(scrapy.Spider):
     name = "javname"
-    baseurl = 'http://www.j17v.com/cn/star_list.php?prefix='
+    baseurl = 'http://www.javlibrary.com/tw/star_list.php?prefix='
     start_urls = []
     for word in string.ascii_uppercase:
         start_urls.append(baseurl + word)

@@ -1,5 +1,5 @@
 import scrapy
-import urllib
+import urllib.request
 from scrapinghub import ScrapinghubClient
 
 

@@ -27,20 +27,20 @@ class MySpider(scrapy.Spider):
 
         for new in response.css('th.new'):
             try:
-                code_new = re.split('[\[\]]', new.css(
+                code_new = re.split(r'[\[\]]', new.css(
                     'a.xst::text').extract_first())[1].upper()
                 href_new = new.css('a.xst::attr("href")').extract_first()
-                if (code_new in MySpider.codelist):
+                if code_new in MySpider.codelist:
                     yield response.follow(href_new, self.getdetail)
             except Exception:
                 pass
 
         for common in response.css('th.common'):
             try:
-                code_common = re.split('[\[\]]', common.css(
+                code_common = re.split(r'[\[\]]', common.css(
                     'a.xst::text').extract_first())[1].upper()
                 href_common = common.css('a.xst::attr("href")').extract_first()
-                if (code_common in MySpider.codelist):
+                if code_common in MySpider.codelist:
                     yield response.follow(href_common, self.getdetail)
             except Exception:
                 pass

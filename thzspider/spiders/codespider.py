@@ -1,5 +1,5 @@
 import scrapy
-import urllib.request
+import requests
 from scrapinghub import ScrapinghubClient
 
 
@@ -19,10 +19,8 @@ class CodeSpider(scrapy.Spider):
     job = project.jobs.get(javjob['key'])
 
     namelisturl = r'http://www.jiangtianyu.ga/assets/doc/namelist'
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
-    req = urllib.request.Request(url=namelisturl, headers=headers)
-    namelist = urllib.request.urlopen(req).read().decode('utf-8').split("\n")
+    namelist = requests.get(namelisturl).text.split('\n')
+    print(namelist)
 
     for actorname in namelist:
         filters = [("name", "=", [actorname])]

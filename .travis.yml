@@ -13,7 +13,18 @@ jobs:
     - stage: run javlib code spider on travis-ci
       script: 
       - scrapy runspider thzspider/spiders/codespider.py
-
+    - stage: run ride spider on travis-ci
+      script: 
+      - scrapy runspider thzspider/spiders/ridespider.py
+    - stage: run walk spider on travis-ci
+      script: 
+      - scrapy runspider thzspider/spiders/walkspider.py
+    - stage: run my spider on travis-ci
+      script: 
+      - scrapy runspider thzspider/spiders/myspider.py
+    - stage: run spider on scrapinghub
+      script: 
+      - python thzspider/scripts/runonscrapinghub.py
 # slack
 notifications:
   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv

@@ -29,9 +29,10 @@ class CodeSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        for codeitem in response.css('div.id'):
+        for codeitem in response.css('div.video'):
             yield {
-                'code': codeitem.css('::text').extract_first(),
+                'code': codeitem.css('div.id::text').extract_first(),
+                'text': codeitem.css('div.title::text').extract_first(),
             }
 
         next_page = response.css('a.next::attr("href")').extract_first()

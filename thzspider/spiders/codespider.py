@@ -22,6 +22,10 @@ class CodeSpider(scrapy.Spider):
     namelist = requests.get(namelisturl).text.split('\n')
     print(namelist)
 
+    codefilterurl = r'http://www.jiangtianyu.ga/assets/doc/codefilter'
+    filterlist = requests.get(codefilterurl).text.split('\n')
+    print(filterlist)
+
     for actorname in namelist:
         filters = [("name", "=", [actorname])]
         for item in job.items.iter(count=1, filter=filters):
@@ -30,10 +34,16 @@ class CodeSpider(scrapy.Spider):
     def parse(self, response):
 
         for codeitem in response.css('div.video'):
-            yield {
-                'code': codeitem.css('div.id::text').extract_first(),
-                'text': codeitem.css('div.title::text').extract_first(),
-            }
+            text = codeitem.css('div.title::text').extract_first()
+            hasfilterword = False
+            for filterword in CodeSpider.filterlist:
+                if filterword in text:
+                    hasfilterword = True
+            if not hasfilterword:
+                yield {
+                    'code': codeitem.css('div.id::text').extract_first(),
+                    'text': codeitem.css('div.title::text').extract_first(),
+                }
 
         next_page = response.css('a.next::attr("href")').extract_first()
         if next_page is not None:

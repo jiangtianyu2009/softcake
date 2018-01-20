@@ -4,10 +4,10 @@ import os
 import shutil
 import re
 
-base_url = 'http://www.jav11b.com/cn/vl_searchbyid.php?keyword='
-srcDir = 'H:\\TCtemp'
-distDir = 'H:\\TCtemp2'
-favstarsFile = 'F:\\utorrent\\hg\\favstars-mjyang-1480093224.html'
+base_url = 'http://www.javlibrary.com/tw/vl_searchbyid.php?keyword='
+srcDir = r'H:\TCtemp1'
+distDir = r'H:\TCtemp2'
+favstarsFile = r'C:\Users\jiang\Downloads\favstars-mjyang-1516433213.html'
 favstarsList = []
 filterWord = "演员:"
 
@@ -41,5 +41,6 @@ for filename in filenames:
                     break
             if not (os.path.isdir(distDir + os.sep + actorNameDir)):
                 os.mkdir(distDir + os.sep + actorNameDir)
-            shutil.move(srcDir + os.sep + filename, distDir + os.sep + actorNameDir)
+            shutil.move(srcDir + os.sep + filename,
+                        distDir + os.sep + actorNameDir)
             print('Moving ' + filename + ' to directory ' + actorNameDir)

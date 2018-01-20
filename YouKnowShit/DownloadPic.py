@@ -7,7 +7,7 @@ import re
 
 base_url = 'http://www.javlibrary.com/tw/vl_searchbyid.php?keyword='
 filterWord = "video_jacket_img"
-srcDirList = [r'E:\download\TC', r'F:\tempf\TC', r'G:\tempg\TC']
+srcDirList = [r'E:\download\TC', r'F:\tempf\TC', r'G:\tempg\TC', r'H:\Temp\TC']
 
 for srcDir in srcDirList:
     filenames = os.listdir(srcDir)

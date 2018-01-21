@@ -7,7 +7,7 @@ import re
 base_url = 'http://www.javlibrary.com/tw/vl_searchbyid.php?keyword='
 srcDir = r'H:\TCtemp1'
 distDir = r'H:\TCtemp2'
-favstarsFile = r'C:\Users\jiang\Downloads\favstars-mjyang-1516433213.html'
+favstarsFile = r'C:\Users\jiang\Downloads\favstars-mjyang-1516435806.html'
 favstarsList = []
 filterWord = "演員:"
 

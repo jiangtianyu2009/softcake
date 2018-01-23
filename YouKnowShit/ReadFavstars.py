@@ -1,6 +1,6 @@
 import bs4
 
-favstarsFile = 'C:\\Users\\JIANG\\Downloads\\favstars-mjyang-1461674723.html'
+favstarsFile = r'C:\Users\JIANG\Downloads\favstars-mjyang-1461674723.html'
 favstarsList = []
 htmlfile = open(favstarsFile, 'r', encoding='UTF-8')
 htmltext = htmlfile.read()

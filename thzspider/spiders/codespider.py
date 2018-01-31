@@ -33,7 +33,7 @@ class CodeSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        acname = response.css('div.boxtitle::text').extract_first().split(' ')[0],
+        acname = response.css('div.boxtitle::text').extract_first().split()[0],
 
         for codeitem in response.css('div.video'):
             text = codeitem.css('div.title::text').extract_first()

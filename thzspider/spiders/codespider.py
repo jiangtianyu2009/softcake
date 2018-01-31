@@ -33,6 +33,8 @@ class CodeSpider(scrapy.Spider):
 
     def parse(self, response):
 
+        acname = response.css('div.boxtitle').extract_first().split(' ')[0],
+
         for codeitem in response.css('div.video'):
             text = codeitem.css('div.title::text').extract_first()
             hasfilterword = False
@@ -43,6 +45,7 @@ class CodeSpider(scrapy.Spider):
                 yield {
                     'code': codeitem.css('div.id::text').extract_first(),
                     'text': codeitem.css('div.title::text').extract_first(),
+                    'name': acname,
                 }
 
         next_page = response.css('a.next::attr("href")').extract_first()

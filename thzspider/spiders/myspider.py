@@ -31,7 +31,7 @@ class MySpider(scrapy.Spider):
                     'a.xst::text').extract_first())[1].upper()
                 href_new = new.css('a.xst::attr("href")').extract_first()
                 if code_new in MySpider.codelist:
-                    yield response.follow(href_new, self.getdetail)
+                    yield response.follow(href_new, self.getdetail, meta={'code': code_new})
             except Exception:
                 pass
 
@@ -41,7 +41,7 @@ class MySpider(scrapy.Spider):
                     'a.xst::text').extract_first())[1].upper()
                 href_common = common.css('a.xst::attr("href")').extract_first()
                 if code_common in MySpider.codelist:
-                    yield response.follow(href_common, self.getdetail)
+                    yield response.follow(href_common, self.getdetail, meta={'code': code_common})
             except Exception:
                 pass
 
@@ -50,9 +50,11 @@ class MySpider(scrapy.Spider):
             yield response.follow(next_page, self.parse)
 
     def getdetail(self, response):
+        code = response.meta['code']
         text = response.css('h1.ts span::text').extract_first()
         imgf = response.css('img.zoom::attr("file")').extract_first()
         yield {
+            'code': code,
             'text': text,
             'href': response.url,
             'imgf': imgf,

@@ -47,7 +47,8 @@ for dirnamestomove in dirnamestomoves:
     for subtomovefilename in subtomovefilenames:
         if (subtomovefilename.find('.torrent') < 0):
             print(subtomovefilename + ' is ready to move')
-            shutil.move(srcDownloadDir + os.sep + dirnamestomove + os.sep + subtomovefilename, distDir)
+            shutil.move(srcDownloadDir + os.sep + dirnamestomove +
+                        os.sep + subtomovefilename, distDir)
             print('Moving ' + subtomovefilename + ' from '
                   + srcDownloadDir + os.sep + dirnamestomove + os.sep + subtomovefilename,
                   ' to directory ' + distDir)

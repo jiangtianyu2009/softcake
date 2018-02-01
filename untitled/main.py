@@ -18,7 +18,8 @@ try:
     i = 0
     text = file_object.readline()
     while (text != ''):
-        s.append(student(text.split(' ')[1], text.split(' ')[0], text.split(' ')[2].strip('\n')))
+        s.append(student(text.split(' ')[1], text.split(
+            ' ')[0], text.split(' ')[2].strip('\n')))
         i = i + 1
         text = file_object.readline()
 finally:

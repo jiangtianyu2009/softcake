@@ -9,6 +9,7 @@ class MySpider(scrapy.Spider):
         'http://thz.la/forum-220-1.html',
     ]
     codelist = []
+    namelist = []
 
     apikey = '11befd9da9304fecb83dfa114d1926e9'
     client = ScrapinghubClient(apikey)
@@ -22,6 +23,7 @@ class MySpider(scrapy.Spider):
 
     for item in lastcodejob.items.iter():
         codelist.append(item['code'])
+        namelist.append(item['name'])
 
     def parse(self, response):
 
@@ -31,7 +33,9 @@ class MySpider(scrapy.Spider):
                     'a.xst::text').extract_first())[1].upper()
                 href_new = new.css('a.xst::attr("href")').extract_first()
                 if code_new in MySpider.codelist:
-                    yield response.follow(href_new, self.getdetail, meta={'code': code_new})
+                    name_new = MySpider.namelist[MySpider.codelist.index(
+                        code_new)]
+                    yield response.follow(href_new, self.getdetail, meta={'code': code_new, 'name': name_new})
             except Exception:
                 pass
 
@@ -41,7 +45,9 @@ class MySpider(scrapy.Spider):
                     'a.xst::text').extract_first())[1].upper()
                 href_common = common.css('a.xst::attr("href")').extract_first()
                 if code_common in MySpider.codelist:
-                    yield response.follow(href_common, self.getdetail, meta={'code': code_common})
+                    name_common = MySpider.namelist[MySpider.codelist.index(
+                        code_common)]
+                    yield response.follow(href_common, self.getdetail, meta={'code': code_common, 'name': name_common})
             except Exception:
                 pass
 
@@ -51,10 +57,12 @@ class MySpider(scrapy.Spider):
 
     def getdetail(self, response):
         code = response.meta['code']
+        name = response.meta['name']
         text = response.css('h1.ts span::text').extract_first()
         imgf = response.css('img.zoom::attr("file")').extract_first()
         yield {
             'code': code,
+            'name': name,
             'text': text,
             'href': response.url,
             'imgf': imgf,

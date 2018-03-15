@@ -62,7 +62,7 @@ class MySpider(scrapy.Spider):
         imgf = response.css('img.zoom::attr("file")').extract_first()
         yield {
             'code': code,
-            'name': name,
+            'name': name[0],
             'text': text,
             'href': response.url,
             'imgf': imgf,

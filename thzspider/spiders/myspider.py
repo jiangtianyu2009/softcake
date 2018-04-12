@@ -1,5 +1,6 @@
-import scrapy
 import re
+
+import scrapy
 from scrapinghub import ScrapinghubClient
 
 
@@ -60,10 +61,21 @@ class MySpider(scrapy.Spider):
         name = response.meta['name']
         text = response.css('h1.ts span::text').extract_first()
         imgf = response.css('img.zoom::attr("file")').extract_first()
+        dlnk = self.builddlnk(response.url, response.css(
+            'p.attnm a::attr("href")').extract_first())
         yield {
             'code': code,
             'name': name[0],
             'text': text,
             'href': response.url,
             'imgf': imgf,
+            'dlnk': dlnk
         }
+
+    def builddlnk(self, href, dlnk):
+        if r'imc_attachad-ad.html?' in dlnk:
+            print('ddd')
+            dlnk = dlnk.replace(r'imc_attachad-ad.html?',
+                                r'forum.php?mod=attachment&')
+        pre = re.split(r'[/]', href)[2]
+        return 'http://' + pre + '/' + dlnk

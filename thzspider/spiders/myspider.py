@@ -74,7 +74,6 @@ class MySpider(scrapy.Spider):
 
     def builddlnk(self, href, dlnk):
         if r'imc_attachad-ad.html?' in dlnk:
-            print('ddd')
             dlnk = dlnk.replace(r'imc_attachad-ad.html?',
                                 r'forum.php?mod=attachment&')
         pre = re.split(r'[/]', href)[2]

@@ -9,6 +9,7 @@ class MySpider(scrapy.Spider):
     start_urls = [
         'http://thz.la/forum-220-1.html',
     ]
+    jav_url = 'http://www.javlibrary.com/en/vl_searchbyid.php?keyword='
     codelist = []
     namelist = []
 
@@ -63,13 +64,17 @@ class MySpider(scrapy.Spider):
         imgf = response.css('img.zoom::attr("file")').extract_first()
         dlnk = self.builddlnk(response.url, response.css(
             'p.attnm a::attr("href")').extract_first())
+        pdat = response.css('td.t_f::text').extract()
+        pdat = pdat[:pdat.index('\r\n\r\n')]
         yield {
             'code': code,
             'name': name[0],
             'text': text,
-            'href': response.url,
             'imgf': imgf,
-            'dlnk': dlnk
+            'jref': self.jav_url + code,
+            'href': response.url,
+            'dlnk': dlnk,
+            'pdat': pdat
         }
 
     def builddlnk(self, href, dlnk):

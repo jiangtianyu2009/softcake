@@ -63,7 +63,10 @@ class MySpider(scrapy.Spider):
         text = response.css('h1.ts span::text').extract_first()
         imgf = response.css('img.zoom::attr("file")').extract_first()
         pdat = response.css('td.t_f::text').extract()
-        pdat = pdat[:pdat.index('\r\n\r\n')]
+        try:
+            pdat = pdat[:pdat.index('\r\n\r\n')]
+        except:
+            pass
         try:
             dlnk = self.builddlnk(response.url, response.css(
                 'p.attnm a::attr("href")').extract_first())

@@ -64,7 +64,7 @@ class MySpider(scrapy.Spider):
         imgf = response.css('img.zoom::attr("file")').extract_first()
         pdat = response.css('td.t_f::text').extract()
         try:
-            pdat = pdat[:pdat.index('\r\n\r\n')]
+            pdat = pdat[:pdat.index('\r\n')]
         except:
             pass
         try:

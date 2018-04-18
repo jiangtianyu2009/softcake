@@ -1,5 +1,5 @@
-import scrapy
 import requests
+import scrapy
 from scrapinghub import ScrapinghubClient
 
 
@@ -18,11 +18,11 @@ class CodeSpider(scrapy.Spider):
     print(javjob['key'])
     job = project.jobs.get(javjob['key'])
 
-    namelisturl = r'http://www.jiangtianyu.ga/assets/doc/namelist'
+    namelisturl = r'https://www.goldenshark.me/docs/namelist'
     namelist = requests.get(namelisturl).text.split('\n')
     print(namelist)
 
-    codefilterurl = r'http://www.jiangtianyu.ga/assets/doc/codefilter'
+    codefilterurl = r'https://www.goldenshark.me/docs/codefilter'
     filterlist = requests.get(codefilterurl).text.split('\n')
     print(filterlist)
 

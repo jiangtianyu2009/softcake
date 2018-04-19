@@ -81,7 +81,8 @@ class MySpider(scrapy.Spider):
             'jref': self.jav_url + code,
             'href': response.url,
             'dlnk': dlnk,
-            'pdat': pdat
+            'pdat': pdat,
+            'pday': self.regxpday(pdat)
         }
 
     def builddlnk(self, href, dlnk):
@@ -90,3 +91,12 @@ class MySpider(scrapy.Spider):
                                 r'forum.php?mod=attachment&')
         pre = re.split(r'[/]', href)[2]
         return 'http://' + pre + '/' + dlnk
+
+    def regxpday(self, pdat):
+        pday = "2011/01/01"
+        p = re.compile(r'(201[0-9]/[0-1][0-9]/[0-3][0-9])')
+        for line in pdat:
+            res = p.search(line)
+            if res:
+                pday = res.group(1)
+        return pday

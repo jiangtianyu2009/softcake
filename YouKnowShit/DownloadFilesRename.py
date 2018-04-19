@@ -1,9 +1,8 @@
 import os
 import re
 
-
 p = re.compile(r'(\D+\d+)(\w*)(.\w+)')
-distDirList = [r'E:\download\TC', r'F:\tempf\TC',
+distDirList = [r'E:\tempe\TC', r'F:\tempf\TC',
                r'G:\tempg\TC']
 
 for distDir in distDirList:

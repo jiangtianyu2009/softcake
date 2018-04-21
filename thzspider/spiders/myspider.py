@@ -68,6 +68,10 @@ class MySpider(scrapy.Spider):
         except:
             pass
         try:
+            pdat = pdat[:pdat.index('\r\n\r\n')]
+        except:
+            pass
+        try:
             dlnk = self.builddlnk(response.url, response.css(
                 'p.attnm a::attr("href")').extract_first())
         except:

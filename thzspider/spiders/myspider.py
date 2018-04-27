@@ -9,7 +9,7 @@ class MySpider(scrapy.Spider):
     start_urls = [
         'http://thz.la/forum-220-1.html',
     ]
-    jav_url = 'http://www.javlibrary.com/en/vl_searchbyid.php?keyword='
+    jav_url = 'http://www.javlibrary.com/tw/vl_searchbyid.php?keyword='
     codelist = []
     namelist = []
 

@@ -37,14 +37,17 @@ class CodeSpider(scrapy.Spider):
 
         for codeitem in response.css('div.video'):
             text = codeitem.css('div.title::text').extract_first()
+            code = codeitem.css('div.id::text').extract_first()
             hasfilterword = False
             for filterword in CodeSpider.filterlist:
                 if filterword in text:
                     hasfilterword = True
+                if filterword in code:
+                    hasfilterword = True
             if not hasfilterword:
                 yield {
-                    'code': codeitem.css('div.id::text').extract_first(),
-                    'text': codeitem.css('div.title::text').extract_first(),
+                    'code': code,
+                    'text': text,
                     'name': acname,
                 }
 

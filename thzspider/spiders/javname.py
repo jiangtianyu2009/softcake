@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import string
 
+import requests
 import scrapy
+from bs4 import BeautifulSoup
 
 
 class JavnameSpider(scrapy.Spider):
@@ -9,7 +11,8 @@ class JavnameSpider(scrapy.Spider):
     start_urls = []
 
     def __init__(self):
-        baseurl = 'http://www.d21b.com/cn/'
+        baseurl = BeautifulSoup(requests.get('http://www.javlib.com/').text,
+                                "lxml").find_all('a', 'enter')[2].get("href") + '/'
         for word in string.ascii_uppercase:
             JavnameSpider.start_urls.append(
                 baseurl + 'star_list.php?prefix=' + word)

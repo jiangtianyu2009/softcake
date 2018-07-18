@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import re
 
+import requests
 import scrapy
+from bs4 import BeautifulSoup
 from scrapinghub import ScrapinghubClient
 
 
@@ -15,7 +17,8 @@ class MyspiderSpider(scrapy.Spider):
     namelist = []
 
     def __init__(self):
-        baseurl = 'http://www.d21b.com/cn/'
+        baseurl = BeautifulSoup(requests.get('http://www.javlib.com/').text,
+                                "lxml").find_all('a', 'enter')[2].get("href") + '/'
         MyspiderSpider.jav_url = baseurl + 'vl_searchbyid.php?keyword='
 
         apikey = '11befd9da9304fecb83dfa114d1926e9'

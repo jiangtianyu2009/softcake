@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 import scrapy
 
 
-class WalkSpider(scrapy.Spider):
-    name = "thzwalk"
+class ThzrideSpider(scrapy.Spider):
+    name = 'thzride'
     start_urls = [
-        'http://thz.la/forum-181-1.html',
+        'http://thz.la/forum-220-1.html',
     ]
 
     def parse(self, response):

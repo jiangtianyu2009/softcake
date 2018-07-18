@@ -1,31 +1,36 @@
+# -*- coding: utf-8 -*-
 import re
 
 import scrapy
 from scrapinghub import ScrapinghubClient
 
 
-class MySpider(scrapy.Spider):
-    name = "myspider"
+class MyspiderSpider(scrapy.Spider):
+    name = 'myspider'
     start_urls = [
         'http://thz.la/forum-220-1.html',
     ]
-    jav_url = 'http://www.javlibrary.com/tw/vl_searchbyid.php?keyword='
+    jav_url = ''
     codelist = []
     namelist = []
 
-    apikey = '11befd9da9304fecb83dfa114d1926e9'
-    client = ScrapinghubClient(apikey)
-    project = client.get_project(252342)
+    def __init__(self):
+        baseurl = 'http://www.d21b.com/cn/'
+        MyspiderSpider.jav_url = baseurl + 'vl_searchbyid.php?keyword='
 
-    for job in list(project.jobs.iter_last(spider='javcode', state='finished')):
-        codejob = job
+        apikey = '11befd9da9304fecb83dfa114d1926e9'
+        client = ScrapinghubClient(apikey)
+        project = client.get_project(252342)
 
-    print(codejob['key'])
-    lastcodejob = project.jobs.get(codejob['key'])
+        for job in list(project.jobs.iter_last(spider='javcode', state='finished')):
+            codejob = job
 
-    for item in lastcodejob.items.iter():
-        codelist.append(item['code'])
-        namelist.append(item['name'])
+        print(codejob['key'])
+        lastcodejob = project.jobs.get(codejob['key'])
+
+        for item in lastcodejob.items.iter():
+            MyspiderSpider.codelist.append(item['code'])
+            MyspiderSpider.namelist.append(item['name'])
 
     def parse(self, response):
 
@@ -34,8 +39,8 @@ class MySpider(scrapy.Spider):
                 code_new = re.split(r'[\[\]]', new.css(
                     'a.xst::text').extract_first())[1].upper()
                 href_new = new.css('a.xst::attr("href")').extract_first()
-                if code_new in MySpider.codelist:
-                    name_new = MySpider.namelist[MySpider.codelist.index(
+                if code_new in MyspiderSpider.codelist:
+                    name_new = MyspiderSpider.namelist[MyspiderSpider.codelist.index(
                         code_new)]
                     yield response.follow(href_new, self.getdetail, meta={'code': code_new, 'name': name_new})
             except Exception:
@@ -46,8 +51,8 @@ class MySpider(scrapy.Spider):
                 code_common = re.split(r'[\[\]]', common.css(
                     'a.xst::text').extract_first())[1].upper()
                 href_common = common.css('a.xst::attr("href")').extract_first()
-                if code_common in MySpider.codelist:
-                    name_common = MySpider.namelist[MySpider.codelist.index(
+                if code_common in MyspiderSpider.codelist:
+                    name_common = MyspiderSpider.namelist[MyspiderSpider.codelist.index(
                         code_common)]
                     yield response.follow(href_common, self.getdetail, meta={'code': code_common, 'name': name_common})
             except Exception:

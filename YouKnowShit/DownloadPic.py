@@ -1,13 +1,14 @@
-import requests
-import bs4
 import os
-import urllib.request
-import shutil
 import re
+import shutil
+import urllib.request
+
+import bs4
+import requests
 
 base_url = 'http://www.javlibrary.com/tw/vl_searchbyid.php?keyword='
 filterWord = "video_jacket_img"
-srcDirList = [r'E:\download\TC', r'F:\tempf\TC', r'G:\tempg\TC', r'H:\Temp\TC']
+srcDirList = [r'E:\tempe\TC', r'F:\tempf\TC', r'G:\tempg\TC']
 
 for srcDir in srcDirList:
     filenames = os.listdir(srcDir)

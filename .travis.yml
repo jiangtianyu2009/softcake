@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.6.4"
+  - "3.6.6"
 # command to install dependencies
 install:
   - pip install -r requirements.txt
@@ -9,19 +9,19 @@ jobs:
   include:
     - stage: run javlib name spider on travis-ci
       script: 
-      - scrapy runspider thzspider/spiders/namespider.py
+      - scrapy crawl javname
     - stage: run javlib code spider on travis-ci
       script: 
-      - scrapy runspider thzspider/spiders/codespider.py
+      - scrapy crawl javcode
     - stage: run ride spider on travis-ci
       script: 
-      - scrapy runspider thzspider/spiders/ridespider.py
+      - scrapy crawl thzride
     - stage: run walk spider on travis-ci
       script: 
-      - scrapy runspider thzspider/spiders/walkspider.py
+      - scrapy crawl thzwalk
     - stage: run my spider on travis-ci
       script: 
-      - scrapy runspider thzspider/spiders/myspider.py
+      - scrapy crawl myspider
     - stage: run spider on scrapinghub
       script: 
       - python thzspider/scripts/runonscrapinghub.py

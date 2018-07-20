@@ -33,14 +33,14 @@ class JavcodeSpider(scrapy.Spider):
 
         for actorname in namelist:
             filters = [("name", "=", [actorname])]
+            if len(job.items.iter(count=1, filter=filters)) == 0:
+                print('Actor without href: ' + actorname)
             for item in job.items.iter(count=1, filter=filters):
                 JavcodeSpider.start_urls.append(
                     baseurl + item['href'])
 
     def parse(self, response):
-
-        acname = response.css('div.boxtitle::text').extract_first().split()[0],
-
+        acname = response.css('div.boxtitle::text').extract_first().split()[0]
         for codeitem in response.css('div.video'):
             text = codeitem.css('div.title::text').extract_first()
             code = codeitem.css('div.id::text').extract_first()
@@ -56,7 +56,6 @@ class JavcodeSpider(scrapy.Spider):
                     'text': text,
                     'name': acname,
                 }
-
         next_page = response.css('a.next::attr("href")').extract_first()
         if next_page is not None:
             yield response.follow(next_page, self.parse)

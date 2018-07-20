@@ -87,7 +87,7 @@ class MyspiderSpider(scrapy.Spider):
 
         yield {
             'code': code,
-            'name': name[0],
+            'name': name,
             'text': text,
             'imgf': imgf,
             'jref': self.jav_url + code,

@@ -33,13 +33,9 @@ class JavcodeSpider(scrapy.Spider):
 
         for actorname in namelist:
             filters = [("name", "=", [actorname])]
-            accounter = 0
             for item in job.items.iter(count=1, filter=filters):
-                accounter = 1
                 JavcodeSpider.start_urls.append(
                     baseurl + item['href'])
-            if accounter == 0:
-                print('Actor without href: ' + actorname)
 
     def parse(self, response):
         acname = response.css('div.boxtitle::text').extract_first().split()[0]

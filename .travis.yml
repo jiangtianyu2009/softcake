@@ -16,9 +16,6 @@ jobs:
     - stage: run ride spider on travis-ci
       script: 
       - scrapy crawl thzride
-    - stage: run walk spider on travis-ci
-      script: 
-      - scrapy crawl thzwalk
     - stage: run my spider on travis-ci
       script: 
       - scrapy crawl myspider

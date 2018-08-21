@@ -13,12 +13,6 @@ jobs:
     - stage: run javlib code spider on travis-ci
       script: 
       - scrapy crawl javcode
-    - stage: run ride spider on travis-ci
-      script: 
-      - scrapy crawl thzride
-    - stage: run my spider on travis-ci
-      script: 
-      - scrapy crawl myspider
     - stage: run spider on scrapinghub
       script: 
       - python thzspider/scripts/runonscrapinghub.py

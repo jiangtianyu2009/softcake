@@ -7,9 +7,6 @@ install:
 # command to run tests
 jobs:
   include:
-    - stage: run javlib code spider on travis-ci
-      script: 
-      - scrapy crawl javcode
     - stage: run spider on scrapinghub
       script: 
       - python thzspider/scripts/runonscrapinghub.py

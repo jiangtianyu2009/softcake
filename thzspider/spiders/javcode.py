@@ -38,9 +38,7 @@ class JavcodeSpider(scrapy.Spider):
                     baseurl + item['href'])
 
     def parse(self, response):
-
-        acname = response.css('div.boxtitle::text').extract_first().split()[0],
-
+        acname = response.css('div.boxtitle::text').extract_first().split()[0]
         for codeitem in response.css('div.video'):
             text = codeitem.css('div.title::text').extract_first()
             code = codeitem.css('div.id::text').extract_first()
@@ -56,7 +54,6 @@ class JavcodeSpider(scrapy.Spider):
                     'text': text,
                     'name': acname,
                 }
-
         next_page = response.css('a.next::attr("href")').extract_first()
         if next_page is not None:
             yield response.follow(next_page, self.parse)

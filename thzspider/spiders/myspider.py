@@ -10,7 +10,7 @@ from scrapinghub import ScrapinghubClient
 class MyspiderSpider(scrapy.Spider):
     name = 'myspider'
     start_urls = [
-        'http://thz.la/forum-220-1.html',
+        'http://thzu.cc/forum-220-1.html',
     ]
     jav_url = ''
     codelist = []
@@ -87,7 +87,7 @@ class MyspiderSpider(scrapy.Spider):
 
         yield {
             'code': code,
-            'name': name[0],
+            'name': name,
             'text': text,
             'imgf': imgf,
             'jref': self.jav_url + code,

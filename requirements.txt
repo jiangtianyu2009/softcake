@@ -1,5 +1,5 @@
 beautifulsoup4==4.6.0
 msgpack-python==0.5.6
-requests==2.19.1
+requests==2.20.0
 scrapinghub==2.0.3
 scrapy==1.5.1

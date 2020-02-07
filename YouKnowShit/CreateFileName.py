@@ -1,7 +1,7 @@
 import os
 
-srcDir = 'G:\\else\\TC'
-distDir = 'C:\\Users\\JIANG\\Downloads\\FileNameData'
+srcDir = "G:\\else\\TC"
+distDir = "C:\\Users\\JIANG\\Downloads\\FileNameData"
 filenames = os.listdir(srcDir)
 
 for filename in filenames:

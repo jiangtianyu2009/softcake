@@ -4,12 +4,12 @@ import os
 import shutil
 import re
 
-base_url = 'http://www.javlibrary.com/tw/vl_searchbyid.php?keyword='
-srcDir = r'H:\TCtemp1'
-distDir = r'H:\TCtemp2'
-favstarsFile = r'C:\Users\jiang\Downloads\favstars-mjyang-1516435806.html'
+base_url = 'http://www.p42u.com/cn/vl_searchbyid.php?keyword='
+srcDir = r'Y:\TCtemp1'
+distDir = r'Y:\TCtemp2'
+favstarsFile = r'C:\Users\jiang\Downloads\favstars-mjyang-1582017991.html'
 favstarsList = []
-filterWord = "演員:"
+filterWord = "演员:"
 
 htmlfile = open(favstarsFile, 'r', encoding='UTF-8')
 htmltext = htmlfile.read()

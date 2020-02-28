@@ -5,8 +5,8 @@ import shutil
 import re
 
 base_url = 'http://www.p42u.com/cn/vl_searchbyid.php?keyword='
-srcDir = r'Y:\TCtemp1'
-distDir = r'Y:\TCtemp2'
+srcDir = r'G:\tempg\TC'
+distDir = r'G:\tempg\TCC'
 favstarsFile = r'C:\Users\jiang\Downloads\favstars-mjyang-1582017991.html'
 favstarsList = []
 filterWord = "演员:"

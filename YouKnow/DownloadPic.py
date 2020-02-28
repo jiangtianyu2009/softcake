@@ -8,7 +8,7 @@ import requests
 
 base_url = 'http://www.p42u.com/cn/vl_searchbyid.php?keyword='
 filterWord = "video_jacket_img"
-srcDirList = [r'Y:\TCNEW', r'G:\tempg\TC']
+srcDirList = [r'G:\tempg\TC']
 
 for srcDir in srcDirList:
     filenames = os.listdir(srcDir)

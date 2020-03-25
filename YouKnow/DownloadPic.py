@@ -6,8 +6,7 @@ import urllib.request
 import bs4
 import requests
 
-base_url = 'http://www.p42u.com/cn/vl_searchbyid.php?keyword='
-filterWord = "video_jacket_img"
+base_url = 'https://avmask.com/cn/search/'
 srcDirList = [r'G:\tempg\TC']
 
 for srcDir in srcDirList:
@@ -21,13 +20,19 @@ for srcDir in srcDirList:
             print(destPicName + ' already here.\n')
         else:
             full_url = base_url + preFileName
+            print(full_url)
             response = requests.get(full_url)
             soup = bs4.BeautifulSoup(response.text, "html.parser")
             try:
-                imgsrc = 'http:' + soup.find(id=filterWord)['src']
-                print(preFileName + "\n" + imgsrc)
-                print(destPicName + "\n")
+                imgsrc = soup.find('img')['src'].replace('ps.jpg', 'pl.jpg')
+                print(imgsrc)
+                print(destPicName)
                 if not os.path.isfile(destPicName):
+                    opener = urllib.request.build_opener()
+                    opener.addheaders = [
+                        ('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
+                    urllib.request.install_opener(opener)
                     urllib.request.urlretrieve(imgsrc, destPicName)
-            except:
+            except Exception as err:
+                print(err)
                 print('!!!!!!!!!!!!!! Can not find picture of ' + filename + '\n')

@@ -2,9 +2,9 @@ import os
 import re
 
 p = re.compile(r'(\D+\d+)(\w*)(.\w+)')
-distDirList = [r'G:\tempg\TC']
+dstDirList = [r'F:\tempg\TC', r'G:\tempg\TC']
 
-for distDir in distDirList:
+for distDir in dstDirList:
     filenames = os.listdir(distDir)
     upperfilenames = []
     print(filenames)

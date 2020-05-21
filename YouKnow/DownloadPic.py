@@ -9,8 +9,7 @@ import bs4
 import requests
 
 base_url = 'https://avmoo.host/cn/search/'
-srcDir = r'G:\tempg\TC'
-dstDir = r'G:\tempg\TCC'
+srcDirList = [r'F:\tempg\TC', r'G:\tempg\TC']
 
 
 def getImageName(fileName):
@@ -70,21 +69,18 @@ def categoryImage(fileName):
     fileNamePrefix = getImageName(fileName)
     imgsrc, act_name = getAvDetail(fileNamePrefix)
     if act_name is not None:
-        if not os.path.isdir(dstDir + os.sep + act_name):
-            os.mkdir(dstDir + os.sep + act_name)
+        if not os.path.isdir(srcDir + 'C' + os.sep + act_name):
+            os.mkdir(srcDir + 'C' + os.sep + act_name)
         shutil.move(srcDir + os.sep + fileName,
-                    dstDir + os.sep + act_name)
+                    srcDir + 'C' + os.sep + act_name)
         print('Moving ' + fileName + ' to directory ' + act_name)
 
 
 if __name__ == '__main__':
 
-    fileNames = os.listdir(srcDir)
-
-    for fileName in fileNames:
-        downloadImage(fileName)
-
-    fileNames = os.listdir(srcDir)
-
-    for fileName in fileNames:
-        categoryImage(fileName)
+    for srcDir in srcDirList:
+        fileNames = os.listdir(srcDir)
+        for fileName in fileNames:
+            downloadImage(fileName)
+        for fileName in fileNames:
+            categoryImage(fileName)

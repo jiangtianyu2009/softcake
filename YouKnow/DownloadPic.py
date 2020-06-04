@@ -82,5 +82,6 @@ if __name__ == '__main__':
         fileNames = os.listdir(srcDir)
         for fileName in fileNames:
             downloadImage(fileName)
+        fileNames = os.listdir(srcDir)
         for fileName in fileNames:
             categoryImage(fileName)

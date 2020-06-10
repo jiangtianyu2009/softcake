@@ -75,13 +75,17 @@ def categoryImage(fileName):
                     srcDir + 'C' + os.sep + act_name)
         print('Moving ' + fileName + ' to directory ' + act_name)
 
+def removeHiddenFiles(fileNames):
+    if 'desktop.ini' in fileNames:
+        fileNames.remove('desktop.ini')
+    return fileNames
 
 if __name__ == '__main__':
 
     for srcDir in srcDirList:
-        fileNames = os.listdir(srcDir)
+        fileNames = removeHiddenFiles(os.listdir(srcDir))
         for fileName in fileNames:
             downloadImage(fileName)
-        fileNames = os.listdir(srcDir)
+        fileNames = removeHiddenFiles(os.listdir(srcDir))
         for fileName in fileNames:
             categoryImage(fileName)

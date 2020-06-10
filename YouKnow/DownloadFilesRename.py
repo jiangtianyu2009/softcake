@@ -6,8 +6,9 @@ dstDirList = [r'F:\tempg\TC', r'G:\tempg\TC']
 
 for distDir in dstDirList:
     filenames = os.listdir(distDir)
-    upperfilenames = []
     print(filenames)
+    if 'desktop.ini' in filenames:
+        filenames.remove('desktop.ini')
     for filenamepref in filenames:
         if filenamepref.find('_') > 0:
             filenameprefit = filenamepref[filenamepref.index('_'):]

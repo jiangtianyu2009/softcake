@@ -20,6 +20,7 @@ def getImageName(fileName):
 
 
 def getAvDetail(fileNamePrefix):
+    av_detail_dict = {}
     act_name = None
     # Get Search Page
     search_url = base_url + fileNamePrefix
@@ -35,15 +36,19 @@ def getAvDetail(fileNamePrefix):
     detail_soup = bs4.BeautifulSoup(
         detail_response.text, "html.parser")
     # Get Image Src
-    imgsrc = detail_soup.find('img')['src']
-    print('Images URL is: ' + imgsrc)
+    img_src = detail_soup.find('img')['src']
+    print('Images URL is: ' + img_src)
     try:
         act_name = detail_soup.find(
             'a', {'class': "avatar-box"}).text.strip()
         print('Actor name is: ' + act_name)
     except:
         print('Cannot find actor name of ' + fileNamePrefix)
-    return imgsrc, act_name
+
+    av_detail_dict['fileNamePrefix'] = fileNamePrefix
+    av_detail_dict['img_src'] = img_src
+    av_detail_dict['act_name'] = act_name
+    return av_detail_dict
 
 
 def downloadImage(fileName):
@@ -53,7 +58,7 @@ def downloadImage(fileName):
     if os.path.isfile(destImagePath):
         print(destImagePath + ' already here.\n')
     else:
-        imgsrc, act_name = getAvDetail(fileNamePrefix)
+        av_detail_dict = getAvDetail(fileNamePrefix)
         # Download Image
         print('Desti file path: ' + destImagePath)
         if not os.path.isfile(destImagePath):
@@ -61,24 +66,28 @@ def downloadImage(fileName):
             opener.addheaders = [
                 ('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.1941.0 Safari/537.36')]
             urllib.request.install_opener(opener)
-            urllib.request.urlretrieve(imgsrc, destImagePath)
+            urllib.request.urlretrieve(
+                av_detail_dict['img_src'], destImagePath)
         print('=======================================')
 
 
 def categoryImage(fileName):
     fileNamePrefix = getImageName(fileName)
-    imgsrc, act_name = getAvDetail(fileNamePrefix)
-    if act_name is not None:
-        if not os.path.isdir(srcDir + 'C' + os.sep + act_name):
-            os.mkdir(srcDir + 'C' + os.sep + act_name)
+    av_detail_dict = getAvDetail(fileNamePrefix)
+    if av_detail_dict['act_name'] is not None:
+        if not os.path.isdir(srcDir + 'C' + os.sep + av_detail_dict['act_name']):
+            os.mkdir(srcDir + 'C' + os.sep + av_detail_dict['act_name'])
         shutil.move(srcDir + os.sep + fileName,
-                    srcDir + 'C' + os.sep + act_name)
-        print('Moving ' + fileName + ' to directory ' + act_name)
+                    srcDir + 'C' + os.sep + av_detail_dict['act_name'])
+        print('Moving ' + fileName + ' to directory ' +
+              av_detail_dict['act_name'])
+
 
 def removeHiddenFiles(fileNames):
     if 'desktop.ini' in fileNames:
         fileNames.remove('desktop.ini')
     return fileNames
+
 
 if __name__ == '__main__':
 

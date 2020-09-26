@@ -9,7 +9,7 @@ import bs4
 import requests
 
 base_url = 'https://avmoo.host/cn/search/'
-srcDirList = [r'F:\tempg\TC', r'G:\tempg\TC']
+srcDirList = [r'F:\tempf\TC', r'G:\tempg\TC']
 
 
 def getImageName(fileName):

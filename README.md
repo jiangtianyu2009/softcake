@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jiangtianyu2009/PiSoftCake.svg?branch=master)](https://travis-ci.org/jiangtianyu2009/PiSoftCake)
+# softcake
 
-# SoftCake
-I don't no...
+## Travis CI
+[![Build Status](https://travis-ci.com/jiangtianyu2009/PiSoftCake.svg?branch=develop)](https://travis-ci.com/jiangtianyu2009/PiSoftCake)

@@ -2,6 +2,8 @@ language: python
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+script:
+  - python checkfiles.py
 # command to run tests
 # jobs:
 #   include:

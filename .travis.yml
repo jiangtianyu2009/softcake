@@ -1,15 +1,13 @@
 language: python
-python:
-  - "3.6.7"
 # command to install dependencies
 install:
   - pip install -r requirements.txt
 # command to run tests
-jobs:
-  include:
-    - stage: run spider on scrapinghub
-      script: 
-      - python thzspider/scripts/runonscrapinghub.py
+# jobs:
+#   include:
+#     - stage: run spider on scrapinghub
+#       script: 
+#       - python thzspider/scripts/runonscrapinghub.py
 # slack
-notifications:
-  slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv
+# notifications:
+#   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv

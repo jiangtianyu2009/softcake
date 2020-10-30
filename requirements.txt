@@ -1,6 +1,8 @@
 # This is an implicit value, here for clarity
 --index https://pypi.python.org/simple/
 
+beautifulsoup4
+msgpack-python
+requests
 scrapinghub
 scrapy
-requests

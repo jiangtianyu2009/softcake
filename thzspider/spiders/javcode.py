@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import requests
 import scrapy
-from bs4 import BeautifulSoup
 from scrapinghub import ScrapinghubClient
 
 
@@ -11,8 +10,7 @@ class JavcodeSpider(scrapy.Spider):
     filterlist = []
 
     def __init__(self):
-        baseurl = BeautifulSoup(requests.get('http://www.javlib.com/').text,
-                                "lxml").find_all('a', 'enter')[2].get("href") + '/'
+        baseurl = 'http://www.javlibrary.com/tw/'
         apikey = '11befd9da9304fecb83dfa114d1926e9'
         client = ScrapinghubClient(apikey)
         project = client.get_project(252342)

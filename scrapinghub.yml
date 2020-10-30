@@ -1,4 +1,4 @@
 projects:
     default: 252342
 stacks:
-    default: scrapy
+    default: scrapy:2.4

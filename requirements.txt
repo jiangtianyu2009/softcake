@@ -2,3 +2,5 @@
 --index https://pypi.python.org/simple/
 
 scrapinghub
+scrapy
+requests

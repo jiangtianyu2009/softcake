@@ -23,11 +23,11 @@ class JavcodeSpider(scrapy.Spider):
         print(javjob['key'])
         job = project.jobs.get(javjob['key'])
 
-        namelisturl = r'https://www.alpacapapahub.com/docs/namelist'
+        namelisturl = r'https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/namelist'
         namelist = requests.get(namelisturl).text.split('\n')
         print(namelist)
 
-        codefilterurl = r'https://www.alpacapapahub.com/docs/codefilter'
+        codefilterurl = r'https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/codefilter'
         JavcodeSpider.filterlist = requests.get(codefilterurl).text.split('\n')
         print(JavcodeSpider.filterlist)
 

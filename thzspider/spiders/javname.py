@@ -3,7 +3,6 @@ import string
 
 import requests
 import scrapy
-from bs4 import BeautifulSoup
 
 
 class JavnameSpider(scrapy.Spider):
@@ -11,8 +10,7 @@ class JavnameSpider(scrapy.Spider):
     start_urls = []
 
     def __init__(self):
-        baseurl = BeautifulSoup(requests.get('http://www.javlib.com/').text,
-                                "lxml").find_all('a', 'enter')[2].get("href") + '/'
+        baseurl = 'http://www.javlibrary.com/tw/'
         for word in string.ascii_uppercase:
             JavnameSpider.start_urls.append(
                 baseurl + 'star_list.php?prefix=' + word)

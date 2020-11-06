@@ -44,7 +44,7 @@ class JavcodeSpider(scrapy.Spider):
                 # b'name': b'\xe7\xa7\x8b\xe5\xb1\xb1\xe7\xa5\xa5\xe5\xad\x90',
                 # b'href': b'vl_star.php?s=aqja',
                 if not isinstance(item['href'], str):
-                    actor_url = BASE_URL + str(item['href'], 'utf-8')
+                    actor_url = BASE_URL + str(item[b'href'], 'utf-8')
                 else:
                     actor_url = BASE_URL + item['href']
                 print(actorname + '\n' + actor_url)

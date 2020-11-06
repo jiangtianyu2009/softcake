@@ -7,7 +7,7 @@ NAME_LIST_URL = ('https://raw.githubusercontent.com/bsonnier/'
                  'bsonnier.github.io/master/docs/namelist')
 CODE_FILTER_URL = ('https://raw.githubusercontent.com/bsonnier/'
                    'bsonnier.github.io/master/docs/codefilter')
-BASE_URL = 'http://www.javlibrary.com/tw/'
+BASE_URL = 'https://www.javlibrary.com/tw/'
 API_KEY = '11befd9da9304fecb83dfa114d1926e9'
 PROJECT_ID = '252342'
 
@@ -69,7 +69,8 @@ class JavcodeSpider(scrapy.Spider):
                     'text': text,
                     'name': acname,
                     'link': BASE_URL + link[2:],
-                    'imgs': "http:" + img_small,
+                    'imgs': "https:" + img_small,
+                    'imgl': "https:" + img_small.replace("ps.jpg", "pl.jpg"),
                 }
         next_page = response.css('a.next::attr("href")').extract_first()
         if next_page is not None:

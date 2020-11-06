@@ -7,6 +7,9 @@ NAME_LIST_URL = ('https://raw.githubusercontent.com/bsonnier/'
                  'bsonnier.github.io/master/docs/namelist')
 CODE_FILTER_URL = ('https://raw.githubusercontent.com/bsonnier/'
                    'bsonnier.github.io/master/docs/codefilter')
+BASE_URL = 'http://www.javlibrary.com/tw/'
+API_KEY = '11befd9da9304fecb83dfa114d1926e9'
+PROJECT_ID = '252342'
 
 
 class JavcodeSpider(scrapy.Spider):
@@ -16,10 +19,8 @@ class JavcodeSpider(scrapy.Spider):
     namelist = []
 
     def __init__(self):
-        baseurl = 'http://www.javlibrary.com/tw/'
-        apikey = '11befd9da9304fecb83dfa114d1926e9'
-        client = ScrapinghubClient(apikey)
-        project = client.get_project(252342)
+        client = ScrapinghubClient(API_KEY)
+        project = client.get_project(PROJECT_ID)
 
         for job in list(project.jobs.iter_last(
                 spider='javname', state='finished')):
@@ -39,7 +40,8 @@ class JavcodeSpider(scrapy.Spider):
         for actorname in JavcodeSpider.namelist:
             filters = [("name", "=", [actorname])]
             for item in job.items.iter(count=1, filter=filters):
-                actor_url = baseurl + item['href']
+                print(item)
+                actor_url = BASE_URL + item['href']
                 print(actorname + '\n' + actor_url)
                 JavcodeSpider.start_urls.append(actor_url)
 

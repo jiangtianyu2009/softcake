@@ -3,11 +3,17 @@ import requests
 import scrapy
 from scrapinghub import ScrapinghubClient
 
+NAME_LIST_URL = ('https://raw.githubusercontent.com/bsonnier/'
+                 'bsonnier.github.io/master/docs/namelist')
+CODE_FILTER_URL = ('https://raw.githubusercontent.com/bsonnier/'
+                   'bsonnier.github.io/master/docs/codefilter')
+
 
 class JavcodeSpider(scrapy.Spider):
     name = 'javcode'
     start_urls = []
     filterlist = []
+    namelist = []
 
     def __init__(self):
         baseurl = 'http://www.javlibrary.com/tw/'
@@ -22,19 +28,20 @@ class JavcodeSpider(scrapy.Spider):
         print(javjob['key'])
         job = project.jobs.get(javjob['key'])
 
-        namelisturl = 'https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/namelist'
-        namelist = requests.get(namelisturl).text.split('\n')
-        print(namelist)
+        JavcodeSpider.namelist = requests.get(
+            NAME_LIST_URL).text.split('\n')
+        print(JavcodeSpider.namelist)
 
-        codefilterurl = 'https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/codefilter'
-        JavcodeSpider.filterlist = requests.get(codefilterurl).text.split('\n')
+        JavcodeSpider.filterlist = requests.get(
+            CODE_FILTER_URL).text.split('\n')
         print(JavcodeSpider.filterlist)
 
-        for actorname in namelist:
+        for actorname in JavcodeSpider.namelist:
             filters = [("name", "=", [actorname])]
             for item in job.items.iter(count=1, filter=filters):
-                JavcodeSpider.start_urls.append(
-                    baseurl + item['href'])
+                actor_url = baseurl + item['href']
+                print(actorname + '\n' + actor_url)
+                JavcodeSpider.start_urls.append(actor_url)
 
     def parse(self, response):
         acname = response.css('div.boxtitle::text').extract_first().split()[0]

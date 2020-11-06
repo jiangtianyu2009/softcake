@@ -15,17 +15,18 @@ class JavcodeSpider(scrapy.Spider):
         client = ScrapinghubClient(apikey)
         project = client.get_project(252342)
 
-        for job in list(project.jobs.iter_last(spider='javname', state='finished')):
+        for job in list(project.jobs.iter_last(
+                spider='javname', state='finished')):
             javjob = job
 
         print(javjob['key'])
         job = project.jobs.get(javjob['key'])
 
-        namelisturl = r'https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/namelist'
+        namelisturl = 'https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/namelist'
         namelist = requests.get(namelisturl).text.split('\n')
         print(namelist)
 
-        codefilterurl = r'https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/codefilter'
+        codefilterurl = 'https://raw.githubusercontent.com/bsonnier/bsonnier.github.io/master/docs/codefilter'
         JavcodeSpider.filterlist = requests.get(codefilterurl).text.split('\n')
         print(JavcodeSpider.filterlist)
 

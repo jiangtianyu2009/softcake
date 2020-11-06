@@ -43,32 +43,33 @@ class JavcodeSpider(scrapy.Spider):
                 # Network transfer will use bytes data like this:
                 # b'name': b'\xe7\xa7\x8b\xe5\xb1\xb1\xe7\xa5\xa5\xe5\xad\x90',
                 # b'href': b'vl_star.php?s=aqja',
+                print(item)
                 if b'href' in item.keys():
-                    actor_url = BASE_URL + str(item[b'href'], 'utf-8')
+                    actor_url = str(item[b'href'], 'utf-8')
                 else:
-                    actor_url = BASE_URL + item['href']
+                    actor_url = item['href']
                 print(actorname + '\n' + actor_url)
                 JavcodeSpider.start_urls.append(actor_url)
 
     def parse(self, response):
-        acname = response.css('div.boxtitle::text').extract_first().split()[0]
+        actor_name = response.css('div.boxtitle::text').extract_first()
         for codeitem in response.css('div.video'):
-            text = codeitem.css('div.title::text').extract_first()
-            code = codeitem.css('div.id::text').extract_first()
-            link = codeitem.css('a::attr(href)').extract_first()
+            title_text = codeitem.css('div.title::text').extract_first()
+            id_code = codeitem.css('div.id::text').extract_first()
+            href_link = codeitem.css('a::attr(href)').extract_first()
             img_small = codeitem.css('img::attr(src)').extract_first()
             hasfilterword = False
             for filterword in JavcodeSpider.filterlist:
-                if filterword in text:
+                if filterword in title_text:
                     hasfilterword = True
-                if filterword in code:
+                if filterword in id_code:
                     hasfilterword = True
             if not hasfilterword:
                 yield {
-                    'code': code,
-                    'text': text,
-                    'name': acname,
-                    'link': BASE_URL + link[2:],
+                    'code': id_code,
+                    'text': title_text,
+                    'name': actor_name.split()[0],
+                    'link': BASE_URL + href_link[2:],
                     'imgs': "https:" + img_small,
                     'imgl': "https:" + img_small.replace("ps.jpg", "pl.jpg"),
                 }

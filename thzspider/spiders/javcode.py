@@ -43,7 +43,7 @@ class JavcodeSpider(scrapy.Spider):
                 # Network transfer will use bytes data like this:
                 # b'name': b'\xe7\xa7\x8b\xe5\xb1\xb1\xe7\xa5\xa5\xe5\xad\x90',
                 # b'href': b'vl_star.php?s=aqja',
-                if not isinstance(item['href'], str):
+                if item[b'href']:
                     actor_url = BASE_URL + str(item[b'href'], 'utf-8')
                 else:
                     actor_url = BASE_URL + item['href']

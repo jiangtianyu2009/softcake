@@ -68,8 +68,8 @@ class JavcodeSpider(scrapy.Spider):
                     'code': code,
                     'text': text,
                     'name': acname,
-                    'link': link,
-                    'imgs': img_small,
+                    'link': BASE_URL + link[2:],
+                    'imgs': "http:" + img_small,
                 }
         next_page = response.css('a.next::attr("href")').extract_first()
         if next_page is not None:

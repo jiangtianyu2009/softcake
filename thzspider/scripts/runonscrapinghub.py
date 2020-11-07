@@ -1,8 +1,11 @@
 from scrapinghub import ScrapinghubClient
 
-apikey = '11befd9da9304fecb83dfa114d1926e9'
-client = ScrapinghubClient(apikey)
-project = client.get_project(252342)
+API_KEY = '11befd9da9304fecb83dfa114d1926e9'
+PROJECT_ID = '252342'
+
+client = ScrapinghubClient(API_KEY)
+project = client.get_project(PROJECT_ID)
+
 project.jobs.run('javname')
 project.jobs.run('javcode')
 # project.jobs.run('thzride')

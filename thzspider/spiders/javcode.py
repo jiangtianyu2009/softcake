@@ -8,6 +8,7 @@ NAME_LIST_URL = ('https://raw.githubusercontent.com/bsonnier/'
 CODE_FILTER_URL = ('https://raw.githubusercontent.com/bsonnier/'
                    'bsonnier.github.io/master/docs/codefilter')
 BASE_URL = 'https://www.javlibrary.com/tw/'
+BT_URL = 'https://btsow.work/search/'
 API_KEY = '11befd9da9304fecb83dfa114d1926e9'
 PROJECT_ID = '252342'
 
@@ -70,6 +71,7 @@ class JavcodeSpider(scrapy.Spider):
                     'text': title_text,
                     'name': actor_name.split()[0],
                     'link': BASE_URL + href_link[2:],
+                    'down': BT_URL + id_code,
                     'imgs': "https:" + img_small,
                     'imgl': "https:" + img_small.replace("ps.jpg", "pl.jpg"),
                 }

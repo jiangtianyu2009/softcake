@@ -6,7 +6,6 @@ PROJECT_ID = '252342'
 client = ScrapinghubClient(API_KEY)
 project = client.get_project(PROJECT_ID)
 
-project.jobs.run('javname')
-project.jobs.run('javcode')
-# project.jobs.run('thzride')
-# project.jobs.run('myspider')
+# project.jobs.run('javname')
+# project.jobs.run('javcode')
+project.jobs.run('javdetail')

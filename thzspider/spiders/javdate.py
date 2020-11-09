@@ -44,12 +44,10 @@ class JavdateSpider(scrapy.Spider):
                 # Network transfer will use bytes data like this:
                 # b'name': b'\xe7\xa7\x8b\xe5\xb1\xb1\xe7\xa5\xa5\xe5\xad\x90',
                 # b'href': b'vl_star.php?s=aqja',
-                print(item)
                 if b'hrel' in item.keys():
                     actor_url = str(item[b'hrel'], 'utf-8')
                 else:
                     actor_url = item['hrel']
-                print(actorname + '\n' + actor_url)
                 JavdateSpider.start_urls.append(actor_url)
 
     def parse(self, response):

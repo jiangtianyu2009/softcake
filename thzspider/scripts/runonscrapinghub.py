@@ -8,5 +8,4 @@ project = client.get_project(PROJECT_ID)
 
 # project.jobs.run('javname')
 # project.jobs.run('javcode')
-project.jobs.run('javdate')
 # project.jobs.run('javdetail')

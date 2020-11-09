@@ -25,6 +25,7 @@ class JavnameSpider(scrapy.Spider):
                 'rfid': reference_id,
                 'name': actor_name,
                 'href': BASE_URL + href_link,
+                'hrel': BASE_URL + href_link.replace("php?", "php?list&"),
             }
         next_page = response.css('a.next::attr("href")').extract_first()
         if next_page is not None:

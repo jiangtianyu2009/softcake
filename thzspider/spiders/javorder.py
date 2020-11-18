@@ -51,7 +51,7 @@ class JavorderSpider(scrapy.Spider):
             for item in code_job.items.iter(count=1, filter=filters):
                 if b'code' in item.keys():
                     code = str(item[b'code'], 'utf-8')
-                    date = str(tmp_item[b'date'], 'utf-8')
+                    date = tmp_item['date']
                     text = str(item[b'text'], 'utf-8')
                     name = str(item[b'name'], 'utf-8')
                     link = str(item[b'link'], 'utf-8')

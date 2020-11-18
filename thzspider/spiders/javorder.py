@@ -35,7 +35,7 @@ class JavorderSpider(scrapy.Spider):
         code_job = project.jobs.get(jav_code_job['key'])
 
         tmp_output = []
-        for item in detailjob.items.iter(count=10):
+        for item in detailjob.items.iter():
             if b'code' in item.keys():
                 code = str(item[b'code'], 'utf-8')
                 date = str(item[b'date'], 'utf-8')

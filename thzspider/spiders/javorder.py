@@ -22,20 +22,23 @@ class JavorderSpider(scrapy.Spider):
         client = ScrapinghubClient(API_KEY)
         project = client.get_project(PROJECT_ID)
 
-        for detailjob in list(project.jobs.iter_last(
+        # Get detail job
+        for detail_job in list(project.jobs.iter_last(
                 spider='javdetail', state='finished')):
-            javdetailjob = detailjob
-        print(javdetailjob['key'])
-        detailjob = project.jobs.get(javdetailjob['key'])
+            jav_detail_job = detail_job
+        print(jav_detail_job['key'])
+        detail_job = project.jobs.get(jav_detail_job['key'])
 
+        # Get code job
         for code_job in list(project.jobs.iter_last(
                 spider='javcode', state='finished')):
             jav_code_job = code_job
         print(jav_code_job['key'])
         code_job = project.jobs.get(jav_code_job['key'])
 
+        # Sort detail items by date
         tmp_output = []
-        for item in detailjob.items.iter():
+        for item in detail_job.items.iter():
             if b'code' in item.keys():
                 code = str(item[b'code'], 'utf-8')
                 date = str(item[b'date'], 'utf-8')
@@ -45,6 +48,7 @@ class JavorderSpider(scrapy.Spider):
             tmp_output.append({'code': code, 'date': date})
         tmp_output.sort(key=lambda x: x['date'], reverse=True)
 
+        # Fullfill detail items
         for tmp_item in tmp_output[:1000]:
             filters = [("code", "=", [tmp_item['code']])]
             for item in code_job.items.iter(count=1, filter=filters):

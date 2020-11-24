@@ -3,6 +3,7 @@ import requests
 import scrapy
 from scrapinghub import ScrapinghubClient
 
+
 NAME_LIST_URL = ('https://raw.githubusercontent.com/bsonnier/'
                  'bsonnier.github.io/master/docs/namelist')
 CODE_FILTER_URL = ('https://raw.githubusercontent.com/bsonnier/'

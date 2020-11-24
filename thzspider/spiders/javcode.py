@@ -20,7 +20,7 @@ class JavcodeSpider(scrapy.Spider):
     namelist = []
 
     def __init__(self):
-        client = ScrapinghubClient(API_KEY)
+        client = ScrapinghubClient(API_KEY, use_msgpack=False)
         project = client.get_project(PROJECT_ID)
 
         for job in list(project.jobs.iter_last(
@@ -41,14 +41,8 @@ class JavcodeSpider(scrapy.Spider):
         for actorname in JavcodeSpider.namelist:
             filters = [("name", "=", [actorname])]
             for item in job.items.iter(count=1, filter=filters):
-                # Network transfer will use bytes data like this:
-                # b'name': b'\xe7\xa7\x8b\xe5\xb1\xb1\xe7\xa5\xa5\xe5\xad\x90',
-                # b'href': b'vl_star.php?s=aqja',
                 print(item)
-                if b'href' in item.keys():
-                    actor_url = str(item[b'href'], 'utf-8')
-                else:
-                    actor_url = item['href']
+                actor_url = item['href']
                 print(actorname + '\n' + actor_url)
                 JavcodeSpider.start_urls.append(actor_url)
 

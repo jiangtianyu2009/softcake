@@ -32,11 +32,11 @@ class JavcodeSpider(scrapy.Spider):
         job = project.jobs.get(javjob['key'])
 
         JavcodeSpider.namelist = requests.get(
-            NAME_LIST_URL).text.split('\n')
+            NAME_LIST_URL).text.split()
         print(JavcodeSpider.namelist)
 
         JavcodeSpider.filterlist = requests.get(
-            CODE_FILTER_URL).text.split('\n')
+            CODE_FILTER_URL).text.split()
         print(JavcodeSpider.filterlist)
 
         for actorname in JavcodeSpider.namelist:

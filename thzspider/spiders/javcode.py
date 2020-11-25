@@ -43,7 +43,6 @@ class JavcodeSpider(scrapy.Spider):
             filters = [("name", "=", [actorname])]
             for item in job.items.iter(count=1, filter=filters):
                 actor_url = item['href']
-                print(actorname + '\n' + actor_url)
                 JavcodeSpider.start_urls.append(actor_url)
 
     def parse(self, response):

@@ -43,7 +43,7 @@ class JavorderSpider(scrapy.Spider):
         # Fullfill detail items
         for tmp_item in tmp_output[:1000]:
             filters = [("code", "=", [tmp_item['code']])]
-            for item in code_job.items.iter(count=1, filter=filters):
+            for item in code_job.items.iter(filter=filters):
                 code = item['code']
                 date = tmp_item['date']
                 text = item['text']
@@ -52,10 +52,12 @@ class JavorderSpider(scrapy.Spider):
                 down = item['down']
                 imgs = item['imgs']
                 imgl = item['imgl']
-            JavorderSpider.output.append({'code': code, 'date': date,
-                                          'text': text, 'name': name,
-                                          'link': link, 'down': down,
-                                          'imgs': imgs, 'imgl': imgl})
+                JavorderSpider.output.append({'code': code, 'date': date,
+                                              'text': text, 'name': name,
+                                              'link': link, 'down': down,
+                                              'imgs': imgs, 'imgl': imgl})
+
+        # Mock start urls
         JavorderSpider.start_urls.append(TEST_URL)
 
     def parse(self, response):

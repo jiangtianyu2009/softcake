@@ -34,7 +34,7 @@ class JavdetailSpider(scrapy.Spider):
             'div[id="video_id"] .text::text').extract_first()
         video_date = response.css(
             'div[id="video_date"] .text::text').extract_first()
-        video_maker = response.css('span.maker .a::text').extract_first()
+        video_maker = response.css('span.maker a::text').extract_first()
         yield {
             'code': video_id,
             'date': video_date,

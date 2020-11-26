@@ -37,7 +37,8 @@ class JavorderSpider(scrapy.Spider):
         for item in detail_job.items.iter():
             code = item['code']
             date = item['date']
-            tmp_output.append({'code': code, 'date': date})
+            makr = item['makr']
+            tmp_output.append({'code': code, 'date': date, 'makr': makr})
         tmp_output.sort(key=lambda x: x['date'], reverse=True)
 
         # Fullfill detail items
@@ -46,6 +47,7 @@ class JavorderSpider(scrapy.Spider):
             for item in code_job.items.iter(filter=filters):
                 code = item['code']
                 date = tmp_item['date']
+                makr = tmp_item['makr']
                 text = item['text']
                 name = item['name']
                 link = item['link']
@@ -53,9 +55,10 @@ class JavorderSpider(scrapy.Spider):
                 imgs = item['imgs']
                 imgl = item['imgl']
                 JavorderSpider.output.append({'code': code, 'date': date,
-                                              'text': text, 'name': name,
-                                              'link': link, 'down': down,
-                                              'imgs': imgs, 'imgl': imgl})
+                                              'makr': makr, 'text': text,
+                                              'name': name, 'link': link,
+                                              'down': down, 'imgs': imgs,
+                                              'imgl': imgl})
 
         # Mock start urls
         JavorderSpider.start_urls.append(TEST_URL)
@@ -65,6 +68,7 @@ class JavorderSpider(scrapy.Spider):
             yield {
                 'code': out['code'],
                 'date': out['date'],
+                'makr': out['makr'],
                 'text': out['text'],
                 'name': out['name'],
                 'link': out['link'],

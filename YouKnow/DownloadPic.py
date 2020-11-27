@@ -8,7 +8,7 @@ import urllib.request
 import bs4
 import requests
 
-base_url = 'https://avmoo.host/cn/search/'
+base_url = 'https://avmoo.cyou/cn/search/'
 srcDirList = [r'F:\tempf\TC', r'G:\tempg\TC']
 
 
@@ -96,5 +96,5 @@ if __name__ == '__main__':
         for fileName in fileNames:
             downloadImage(fileName)
         fileNames = removeHiddenFiles(os.listdir(srcDir))
-        for fileName in fileNames:
-            categoryImage(fileName)
+        # for fileName in fileNames:
+        #     categoryImage(fileName)

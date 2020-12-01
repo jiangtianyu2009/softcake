@@ -14,7 +14,9 @@ srcDirList = [r'F:\tempf\TC', r'G:\tempg\TC']
 
 def getImageName(fileName):
     fileNamePrefix = fileName.split(".")[0]
-    if fileNamePrefix[-1] == "A" or fileNamePrefix[-1] == "B" or fileNamePrefix[-1] == "C":
+    if fileNamePrefix[-1] == "A" \
+            or fileNamePrefix[-1] == "B" \
+            or fileNamePrefix[-1] == "C":
         fileNamePrefix = fileNamePrefix[0:len(fileNamePrefix) - 1]
     return fileNamePrefix
 
@@ -42,8 +44,6 @@ def getAvDetail(fileNamePrefix):
         act_name = detail_soup.find(
             'a', {'class': "avatar-box"}).text.strip()
         print('Actor name is: ' + act_name)
-    except:
-        print('Cannot find actor name of ' + fileNamePrefix)
 
     av_detail_dict['fileNamePrefix'] = fileNamePrefix
     av_detail_dict['img_src'] = img_src
@@ -63,8 +63,11 @@ def downloadImage(fileName):
         print('Desti file path: ' + destImagePath)
         if not os.path.isfile(destImagePath):
             opener = urllib.request.build_opener()
-            opener.addheaders = [
-                ('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.1941.0 Safari/537.36')]
+            opener.addheaders = [(
+                'User-Agent',
+                'Mozilla/5.0 (Windows NT 6.1; WOW64) \
+                 AppleWebKit/537.36 (KHTML, like Gecko) \
+                 Chrome/66.0.1941.0 Safari/537.36')]
             urllib.request.install_opener(opener)
             urllib.request.urlretrieve(
                 av_detail_dict['img_src'], destImagePath)
@@ -75,7 +78,8 @@ def categoryImage(fileName):
     fileNamePrefix = getImageName(fileName)
     av_detail_dict = getAvDetail(fileNamePrefix)
     if av_detail_dict['act_name'] is not None:
-        if not os.path.isdir(srcDir + 'C' + os.sep + av_detail_dict['act_name']):
+        if not os.path.isdir(srcDir + 'C' + os.sep
+                             + av_detail_dict['act_name']):
             os.mkdir(srcDir + 'C' + os.sep + av_detail_dict['act_name'])
         shutil.move(srcDir + os.sep + fileName,
                     srcDir + 'C' + os.sep + av_detail_dict['act_name'])
@@ -96,5 +100,5 @@ if __name__ == '__main__':
         for fileName in fileNames:
             downloadImage(fileName)
         fileNames = removeHiddenFiles(os.listdir(srcDir))
-        # for fileName in fileNames:
-        #     categoryImage(fileName)
+        for fileName in fileNames:
+            categoryImage(fileName)

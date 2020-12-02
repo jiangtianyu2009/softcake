@@ -24,10 +24,10 @@ class JavnameSpider(scrapy.Spider):
 
     def parse(self, response):
         for searchitem in response.css('div.searchitem'):
-            reference_id = searchitem.css('::attr("id")').extract_first()
             actor_name = searchitem.css('a::text').extract_first()
-            href_link = searchitem.css('a::attr("href")').extract_first()
             if actor_name in JavnameSpider.namelist:
+                reference_id = searchitem.css('::attr("id")').extract_first()
+                href_link = searchitem.css('a::attr("href")').extract_first()
                 yield {
                     'rfid': reference_id,
                     'name': actor_name,

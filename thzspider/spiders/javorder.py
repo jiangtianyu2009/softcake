@@ -42,7 +42,7 @@ class JavorderSpider(scrapy.Spider):
         tmp_output.sort(key=lambda x: x['date'], reverse=True)
 
         # Fullfill detail items
-        for tmp_item in tmp_output[:1000]:
+        for tmp_item in tmp_output[:2000]:
             filters = [("code", "=", [tmp_item['code']])]
             for item in code_job.items.iter(filter=filters):
                 code = item['code']

@@ -10,6 +10,3 @@ jobs:
     - stage: run spider on scrapinghub
       script: 
       - python thzspider/scripts/runonscrapinghub.py
-# slack
-# notifications:
-#   slack: jiangtianyu:s5kgWEw0Mmf0PhlYniLoT8Sv

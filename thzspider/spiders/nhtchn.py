@@ -22,11 +22,14 @@ class NhtchnSpider(scrapy.Spider):
         for codeitem in response.css('div.container.index-container'):
             for galleryitem in codeitem.css('div.gallery'):
                 gallery_href = galleryitem.css('a::attr(href)').extract_first()
+                gallery_caption = galleryitem.css(
+                    'a .div.caption::text').extract_first()
                 # id_code = codeitem.css('div.id::text').extract_first()
                 # href_link = codeitem.css('a::attr(href)').extract_first()
                 # img_small = codeitem.css('img::attr(src)').extract_first()
                 yield {
                     'href': gallery_href,
+                    'capt': gallery_caption,
                 }
         # next_page = response.css('a.next::attr("href")').extract_first()
         # if next_page is not None:

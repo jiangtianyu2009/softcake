@@ -12,15 +12,6 @@ class LibIOSpider(scrapy.Spider):
 
     def __init__(self):
         LibIOSpider.start_urls.append(BASE_URL + '1')
-        LibIOSpider.start_urls.append(BASE_URL + '2')
-        LibIOSpider.start_urls.append(BASE_URL + '3')
-        LibIOSpider.start_urls.append(BASE_URL + '4')
-        LibIOSpider.start_urls.append(BASE_URL + '5')
-        LibIOSpider.start_urls.append(BASE_URL + '6')
-        LibIOSpider.start_urls.append(BASE_URL + '7')
-        LibIOSpider.start_urls.append(BASE_URL + '8')
-        LibIOSpider.start_urls.append(BASE_URL + '9')
-        LibIOSpider.start_urls.append(BASE_URL + '10')
 
 # div.contain .blue{color:blue;}
 # div.contain.blue{color:blue;}
@@ -44,7 +35,7 @@ class LibIOSpider(scrapy.Spider):
                 'name': pkg_name,
             }
         print(LibIOSpider.pkg_names)
-        f = open("guru99.txt", "w+")
+        f = open("requirements.txt", "w+")
         for name in LibIOSpider.pkg_names:
             f.write(name + '\n')
         f.close()
